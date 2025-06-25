@@ -1,4 +1,4 @@
-export default function Page() {
+export default function  Service() {
   return (
     <>
     <h1 class="text-4xl text-green-700 font-bold">
