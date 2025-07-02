@@ -22,11 +22,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-      <Navbar/>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <div className="container-fluid">
+        <div className="row">
+        <div className="col-12">
+        <Navbar/>
+        <navigation/>
         {children}
+        </div>
+        </div>
+        </div>
       </body>
     </html>
   );
