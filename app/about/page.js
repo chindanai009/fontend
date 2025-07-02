@@ -1,11 +1,9 @@
 export default function About() {
   return (
-    <>
-    <h1 class="text-4xl text-green-700 font-bold">
-    <center>
-    About page
-    </center>
-    </h1>
-    </>
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-800">
+      <h1 className="text-6xl md:text-8xl font-extrabold text-green-400 text-center drop-shadow-lg tracking-wide">
+        About
+      </h1>
+    </section>
   );
 }
