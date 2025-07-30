@@ -11,18 +11,18 @@ export default function Carousel() {
   const slides = [
     {
       src: "/images/sliders/1.png",
-      title: "โปรเจกต์แรก",
-      description: "ผลงานที่โดดเด่นและน่าประทับใจ"
+      title: "",
+      description: ""
     },
     {
       src: "/images/sliders/2.png",
-      title: "โปรเจกต์ที่สอง",
-      description: "นวัตกรรมใหม่ที่เปลี่ยนโลก"
+      title: "",
+      description: ""
     },
     {
       src: "/images/sliders/3.png",
-      title: "โปรเจกต์ที่สาม",
-      description: "ดีไซน์ที่สวยงามและใช้งานง่าย"
+      title: "",
+      description: ""
     }
   ];
 
@@ -32,7 +32,7 @@ export default function Carousel() {
         id="carouselExample"
         className="carousel slide carousel-fade"
         data-bs-ride="carousel"
-        data-bs-interval="5000"
+        data-bs-interval="2500" // ปรับให้เปลี่ยนภาพทุก 2.5 วินาที
       >
         {/* Indicators */}
         <div className="carousel-indicators">

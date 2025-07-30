@@ -4,15 +4,15 @@ import { useState } from "react";
 import Link from "next/link";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [userOrEmail, setUserOrEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Demo: simple validation
-    if (!email || !password) {
-      setError("กรุณากรอกอีเมลและรหัสผ่าน");
+    if (!userOrEmail || !password) {
+      setError("กรุณากรอกอีเมล/ชื่อผู้ใช้ และรหัสผ่าน");
       return;
     }
     setError("");
@@ -26,14 +26,15 @@ export default function Login() {
         <h2 className="mb-4 text-center fw-bold">เข้าสู่ระบบ</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">อีเมล</label>
+            <label htmlFor="userOrEmail" className="form-label">อีเมลหรือชื่อผู้ใช้</label>
             <input
-              type="email"
+              type="text"
               className="form-control"
-              id="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+              id="userOrEmail"
+              value={userOrEmail}
+              onChange={e => setUserOrEmail(e.target.value)}
               required
+              placeholder="อีเมลหรือชื่อผู้ใช้"
             />
           </div>
           <div className="mb-3">

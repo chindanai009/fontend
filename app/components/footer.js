@@ -23,15 +23,15 @@ export default function Footer() {
                 <div className="contact-info">
                   <div className="d-flex align-items-center mb-2">
                     <i className="bi bi-telephone text-primary me-3"></i>
-                    <span>+66 (0) 2-123-4567</span>
+                    <span>+66 98-6323408</span>
                   </div>
                   <div className="d-flex align-items-center mb-2">
                     <i className="bi bi-envelope text-primary me-3"></i>
-                    <span>info@mywebsite.com</span>
+                    <span>ice.chin14@gmail.com</span>
                   </div>
                   <div className="d-flex align-items-center">
                     <i className="bi bi-geo-alt text-primary me-3"></i>
-                    <span>กรุงเทพฯ, ประเทศไทย</span>
+                    <span>เชียงใหม่ , ประเทศไทย</span>
                   </div>
                 </div>
               </div>
@@ -214,4 +214,4 @@ export default function Footer() {
       `}</style>
     </footer>
   );
-}
+} 
