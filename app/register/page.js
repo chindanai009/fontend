@@ -102,7 +102,7 @@ export default function RegisterPage() {
 
       <style jsx>{`
         .register-bg {
-          background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%);
+          background: linear-gradient(135deg, #14532d 0%, #3bb78f 100%);
         }
         .register-icon {
           width: 64px;

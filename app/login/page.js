@@ -21,7 +21,10 @@ export default function Login() {
   };
 
   return (
-    <div className="container d-flex align-items-center justify-content-center min-vh-100">
+    <div className="min-vh-100 d-flex align-items-center justify-content-center" style={{
+      background: 'linear-gradient(135deg, #14532d 0%, #3bb78f 100%)',
+      minHeight: '100vh'
+    }}>
       <div className="card shadow p-4" style={{ maxWidth: 400, width: "100%" }}>
         <h2 className="mb-4 text-center fw-bold">เข้าสู่ระบบ</h2>
         <form onSubmit={handleSubmit}>
