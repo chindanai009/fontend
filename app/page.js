@@ -28,9 +28,6 @@ export default function Home() {
                         ยินดีต้อนรับสู่เว็บไซต์ของเรา
                       </h1>
                       <p className="lead fs-4 mb-4 animate-fadeInUp" style={{animationDelay: '0.2s'}}>
-                        <i className="bi bi-magic me-2 text-warning"></i>
-                        เรามีผลงานและโปรเจกต์ที่น่าสนใจ พร้อมให้คุณติดตาม
-                        <i className="bi bi-lightbulb text-warning ms-2"></i>
                       </p>
                       <div className="d-flex gap-3 justify-content-center flex-wrap animate-fadeInUp" style={{animationDelay: '0.4s'}}>
                         <button className="btn btn-primary btn-lg px-4 py-2 rounded-pill">
@@ -64,7 +61,7 @@ export default function Home() {
 
       {/* Features Section with Green Pastel Gradient */}
       <section className="py-5" style={{
-        background: 'linear-gradient(135deg, #1e3a34 0%, #43e97b 100%)'
+        background: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)'
       }}>
         <div className="container">
           <div className="row text-center mb-5">
@@ -135,7 +132,7 @@ export default function Home() {
 
       {/* Card Section with Green Pastel Gradient */}
       <main className="py-5" style={{
-        background: 'linear-gradient(135deg, #0f9b0f 0%, #43e97b 100%)'
+        background: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)'
       }}>
         <div className="container">
           <div className="row mb-5">
@@ -152,7 +149,7 @@ export default function Home() {
 
       {/* CTA Section with Green Pastel Gradient */}
       <section className="py-5" style={{
-        background: 'linear-gradient(135deg, #56ab2f 0%, #a8e063 100%)'
+        background: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)'
       }}>
         <div className="container">
           <div className="row text-center">

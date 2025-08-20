@@ -17,26 +17,27 @@ export default function Card() {
       <div className="row g-4">
         {[
           {
-            src: "/images/sliders/4.png",
-            desc: "This is the first project in our portfolio.",
+            src: "/images/sliders/1.jpg",
+            desc: "911 Turbo S",
           },
           {
-            src: "/images/sliders/5.png",
-            desc: "Our second featured project for this month.",
+            src: "/images/sliders/2.jpg",
+            desc: "GT4 RS",
           },
           {
-            src: "/images/sliders/6.png",
-            desc: "Our third featured project with elegant design.",
+            src: "/images/sliders/3.jpg",
+            desc: "911 GT3 RS",
           },
         ].map((item, index) => (
           <div className="col-sm-6 col-md-4" key={index}>
             <div className="card h-100 shadow-sm border-0 rounded-4 hover-card">
-             <img
-              src={item.src}
-              alt={`Project ${index + 1}`}
-              className="card-img-top rounded-top-4"
-              style={{ objectFit: "cover", width: "75%", height: "200px" }}
-              />
+              <div className="card-img-container">
+                <img
+                  src={item.src}
+                  alt={`Project ${index + 1}`}
+                  className="card-img-top rounded-top-4"
+                />
+              </div>
               <div className="card-body text-center">
                 <p className="card-text text-muted">{item.desc}</p>
               </div>
@@ -47,6 +48,23 @@ export default function Card() {
 
       {/* Custom CSS for hover */}
       <style jsx>{`
+        .card-img-container {
+          width: 100%;
+          height: 220px;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-top-left-radius: 1rem;
+          border-top-right-radius: 1rem;
+        }
+        .card-img-top {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-top-left-radius: 1rem;
+          border-top-right-radius: 1rem;
+        }
         .hover-card {
           transition: transform 0.3s ease, box-shadow 0.3s ease;
         }

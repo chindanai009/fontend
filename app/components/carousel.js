@@ -32,7 +32,7 @@ export default function Carousel() {
         id="carouselExample"
         className="carousel slide carousel-fade"
         data-bs-ride="carousel"
-        data-bs-interval="2500" // ปรับให้เปลี่ยนภาพทุก 2.5 วินาที
+        data-bs-interval="1000" // ปรับให้เปลี่ยนภาพทุก 1.0 วินาที
       >
         {/* Indicators */}
         <div className="carousel-indicators">
