@@ -6,8 +6,8 @@ export default function Card() {
       {/* Header */}
       <div className="row mb-5">
         <div className="col-12 text-center">
-          <h2 className="fw-bold text-primary">Our Projects</h2>
-          <p className="text-muted">
+          <h2 className="fw-bold project-title">Our Projects</h2>
+          <p className="project-desc">
             โปรเจกต์ที่เราภูมิใจนำเสนอในเดือนนี้
           </p>
         </div>
@@ -48,6 +48,14 @@ export default function Card() {
 
       {/* Custom CSS for hover */}
       <style jsx>{`
+        .project-title {
+          color: #fff6e9;
+          text-shadow: 0 2px 8px rgba(58,28,113,0.18);
+        }
+        .project-desc {
+          color: #ffe0b2;
+          text-shadow: 0 1px 4px rgba(58,28,113,0.12);
+        }
         .card-img-container {
           width: 100%;
           height: 220px;

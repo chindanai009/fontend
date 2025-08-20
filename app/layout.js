@@ -30,6 +30,8 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#0d6efd" />
         <link rel="icon" href="/favicon.ico" />
+        {/* Google Fonts: Prompt, Kanit, Inter, Roboto */}
+        <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&family=Kanit:wght@400;500;700&family=Inter:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />

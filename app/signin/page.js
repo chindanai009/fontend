@@ -31,18 +31,16 @@ export default function Page() {
   };
 
   return (
-    <div className="min-vh-100 d-flex align-items-center justify-content-center" style={{
-      background: 'linear-gradient(135deg, #14532d 0%, #3bb78f 100%)',
-      minHeight: '100vh',
-      backgroundAttachment: 'fixed',
-      fontFamily: 'Kanit, Prompt, sans-serif',
-    }}>
-      <div className="card shadow-lg border-0 p-4" style={{ maxWidth: 400, width: '100%', borderRadius: 24, background: 'rgba(255,255,255,0.95)', boxShadow: '0 8px 32px rgba(44,62,80,0.15)' }}>
+    <div className="register-bg min-vh-100 d-flex align-items-center justify-content-center" style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}>
+      <div className="card shadow-lg border-0 p-4 animate-fadeInUp" style={{ maxWidth: 400, width: '100%', borderRadius: 24, fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'" }}>
         <div className="text-center mb-4">
-          <i className="bi bi-shield-lock" style={{ fontSize: 48, color: '#198754', filter: 'drop-shadow(0 2px 8px #19875433)' }}></i>
-          <h2 className="fw-bold mt-2" style={{ letterSpacing: 1 }}>เข้าสู่ระบบ Admin</h2>
+          <div className="register-icon mb-2 mx-auto d-flex align-items-center justify-content-center">
+            <i className="bi bi-shield-lock fs-1 text-success"></i>
+          </div>
+          <h2 className="fw-bold mb-1">เข้าสู่ระบบ Admin</h2>
+          <p className="text-muted mb-0">สำหรับผู้ดูแลระบบ</p>
         </div>
-        <form className="row g-3" onSubmit={handleLogin} autoComplete="off">
+        <form className="row g-3" onSubmit={handleLogin} autoComplete="off" style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}>
           <div className="col-12">
             <label className="form-label">Username</label>
             <div className="input-group">
@@ -58,7 +56,7 @@ export default function Page() {
             </div>
           </div>
           <div className="col-12 d-grid gap-2 mt-2">
-            <button type="submit" className="btn btn-success btn-lg shadow-sm">
+            <button type="submit" className="btn btn-success btn-lg shadow-sm animate-bounceIn">
               <i className="bi bi-box-arrow-in-right me-2"></i> Sign In
             </button>
           </div>
@@ -69,6 +67,46 @@ export default function Page() {
           </div>
         </form>
       </div>
+      <style jsx>{`
+        .register-bg {
+          background: linear-gradient(135deg, #14532d 0%, #3bb78f 100%);
+        }
+        .register-icon {
+          width: 64px;
+          height: 64px;
+          background: #f1f3f9;
+          border-radius: 50%;
+          box-shadow: 0 2px 8px rgba(25,135,84,0.08);
+        }
+        .animate-fadeInUp {
+          animation: fadeInUp 0.8s ease-out forwards;
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        .animate-bounceIn {
+          animation: bounceIn 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes fadeInUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes bounceIn {
+          0% {
+            transform: scale(0.8);
+            opacity: 0.5;
+          }
+          60% {
+            transform: scale(1.05);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+      `}</style>
     </div>
   );
 }

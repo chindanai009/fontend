@@ -7,14 +7,17 @@ import Card from "./components/card";
 export default function Home() {
   return (
     <div className="min-h-screen font-modern" style={{
-      background: 'linear-gradient(135deg, #14532d 0%, #3bb78f 100%)',
+      background: "url('/images/sliders/8.jpg') center center / cover no-repeat fixed",
       minHeight: '100vh',
       fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"
     }}>
-      {/* Hero Section with Green Pastel Gradient */}
+      {/* Hero Section with Transparent Background */}
       <section className="hero-section position-relative overflow-hidden" style={{
-        background: 'linear-gradient(135deg, #14532d 0%, #3bb78f 100%)',
-        minHeight: '100vh'
+        background: 'rgba(0,0,0,0.35)',
+        minHeight: '100vh',
+        boxShadow: 'none',
+        border: 'none',
+        filter: 'none',
       }}>
         <div className="container-fluid px-0">
           <div className="row align-items-center min-vh-100 g-0">
@@ -23,16 +26,13 @@ export default function Home() {
                 <div className="container">
                   <div className="row justify-content-center">
                     <div className="col-lg-8">
-                      <h1 className="display-2 fw-bold mb-4 animate-fadeInUp">
-                        <i className="bi bi-stars text-warning me-2"></i>
-                        ยินดีต้อนรับสู่เว็บไซต์ของเรา
+                      <h1 className="display-2 fw-bold mb-4 animate-fadeInUp project-title">
+                      <i className="bi bi-stars text-warning me-2"></i>
+                      ยินดีต้อนรับสู่เว็บไซต์ของเรา
                       </h1>
-                      <p className="lead fs-4 mb-4 animate-fadeInUp" style={{animationDelay: '0.2s'}}>
+                      <p className="lead fs-4 mb-4 animate-fadeInUp project-desc" style={{animationDelay: '0.2s'}}>
                       </p>
                       <div className="d-flex gap-3 justify-content-center flex-wrap animate-fadeInUp" style={{animationDelay: '0.4s'}}>
-                        <button className="btn btn-primary btn-lg px-4 py-2 rounded-pill">
-                          <i className="bi bi-rocket-takeoff me-2"></i>เริ่มต้นใช้งาน
-                        </button>
                         <button className="btn btn-outline-light btn-lg px-4 py-2 rounded-pill">
                           <i className="bi bi-info-circle me-2"></i>เรียนรู้เพิ่มเติม
                         </button>
@@ -59,9 +59,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section with Green Pastel Gradient */}
+      {/* Features Section with Transparent Background */}
       <section className="py-5" style={{
-        background: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)'
+        background: 'rgba(0,0,0,0.25)',
+        boxShadow: 'none',
+        border: 'none',
+        filter: 'none',
       }}>
         <div className="container">
           <div className="row text-center mb-5">
@@ -113,9 +116,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Carousel Section with Green Pastel Gradient */}
+      {/* Carousel Section with Transparent Background */}
       <section className="py-5" style={{
-        background: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)'
+        background: 'rgba(0,0,0,0.25)',
+        boxShadow: 'none',
+        border: 'none',
+        filter: 'none',
       }}>
         <div className="container">
           <div className="row mb-5">
@@ -130,9 +136,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Card Section with Green Pastel Gradient */}
+      {/* Card Section with Wine Purple Gradient */}
       <main className="py-5" style={{
-        background: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)'
+        background: 'transparent',
+        boxShadow: 'none',
+        border: 'none',
+        filter: 'none',
       }}>
         <div className="container">
           <div className="row mb-5">
@@ -147,48 +156,10 @@ export default function Home() {
         </div>
       </main>
 
-      {/* CTA Section with Green Pastel Gradient */}
-      <section className="py-5" style={{
-        background: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)'
-      }}>
-        <div className="container">
-          <div className="row text-center">
-            <div className="col-lg-8 mx-auto">
-              <h2 className="display-5 fw-bold mb-3 text-dark">
-                <i className="bi bi-stars text-warning me-2"></i>พร้อมเริ่มต้นแล้วหรือยัง?
-              </h2>
-              <p className="lead mb-4 text-dark opacity-75">ติดต่อเราวันนี้เพื่อรับคำปรึกษาฟรี</p>
-              <button className="btn btn-dark btn-lg px-4 py-2 rounded-pill">
-                <i className="bi bi-headset-vr me-2"></i>ติดต่อเรา
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <Footer />
 
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;700&family=Kanit:wght@400;600;700&family=Inter:wght@400;600;700&display=swap');
-        body, .font-modern {
-          font-family: 'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif' !important;
-          font-weight: 400;
-          letter-spacing: 0.01em;
-          color: #f3f4f6;
-        }
-        h1, h2, h3, h4, h5, h6, .display-2, .display-5 {
-          font-family: 'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif' !important;
-          font-weight: 700;
-          letter-spacing: 0.01em;
-        }
-        .lead, .card-title, .card-text, .fw-bold {
-          font-family: 'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif' !important;
-        }
-        .btn, .nav-link, .navbar-brand, .brand-text {
-          font-family: 'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif' !important;
-        }
-      `}</style>
+  {/* Custom heading/desc styles moved to globals.css for Next.js compatibility */}
     </div>
   );
 }

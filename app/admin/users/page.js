@@ -6,10 +6,12 @@ import { useRouter } from 'next/navigation';
 export default function User() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [tokenState, setToken] = useState("");
   const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    setToken(token);
     if (!token) {
       router.push('/signin');
       return;
@@ -34,6 +36,12 @@ export default function User() {
     return () => clearInterval(interval);
   }, [router]);
 
+  const handleSignOut = () => {
+    localStorage.removeItem('token');
+    setToken(null);
+    router.push('/signin');
+  };
+
   const handleDelete = async (id) => {
     try {
       const res = await fetch(`http://itdev.cmtc.ac.th:3000/api/users/${id}`, {
@@ -50,13 +58,24 @@ export default function User() {
   };
 
   if (loading) {
-    return <div className='text-center'><h1>Loading...</h1></div>;
+    return <div className='text-center' style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}><h1>Loading...</h1></div>;
   }
 
   return (
     <>
       <br /><br /><br /><br />
-      <div className="container">
+      <div className="container" style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}>
+        <div className="d-flex justify-content-end mb-3">
+          {tokenState && (
+            <button
+              type="button"
+              onClick={handleSignOut}
+              className="btn btn-outline-danger"
+            >
+              <i className="bi bi-box-arrow-right"></i> SignOut
+            </button>
+          )}
+        </div>
         <div className="card">
           <div className="card-header">
             Users List

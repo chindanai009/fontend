@@ -2,8 +2,8 @@
 
 export default function Service() {
   return (
-    <section className="min-vh-100 d-flex align-items-center justify-content-center" style={{ background: 'linear-gradient(135deg, #212529 0%, #14532d 100%)' }}>
-      <div className="container py-5">
+    <section className="min-vh-100 d-flex align-items-center justify-content-center" style={{ background: 'linear-gradient(135deg, #212529 0%, #14532d 100%)', fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'" }}>
+      <div className="container py-5" style={{ fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'" }}>
         <div className="row justify-content-center mb-5">
           <div className="col-12 text-center">
             <h1 className="display-4 fw-bold text-white mb-3 animate-fadeInUp">
@@ -46,7 +46,7 @@ export default function Service() {
             }
           ].map((service, idx) => (
             <div className="col-md-6 col-lg-4" key={idx}>
-              <div className="card h-100 border-0 shadow-lg rounded-4 animate-fadeInUp" style={{ background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(10px)' }}>
+              <div className="card h-100 border-0 shadow-lg rounded-4 animate-fadeInUp" style={{ background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(10px)', fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'" }}>
                 <div className="card-body text-center p-4">
                   <div className={`mb-3 ${service.color}`}>
                     <i className={`${service.icon} fs-1`}></i>

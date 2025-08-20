@@ -10,17 +10,17 @@ export default function Carousel() {
 
   const slides = [
     {
-      src: "/images/sliders/1.png",
+      src: "/images/sliders/5.jpg",
       title: "",
       description: ""
     },
     {
-      src: "/images/sliders/2.png",
+      src: "/images/sliders/6.jpg",
       title: "",
       description: ""
     },
     {
-      src: "/images/sliders/3.png",
+      src: "/images/sliders/7.jpg",
       title: "",
       description: ""
     }
@@ -55,13 +55,14 @@ export default function Carousel() {
               className={`carousel-item ${index === 0 ? "active" : ""}`}
               key={index}
             >
-              <div className="position-relative carousel-slide">
+              <div className="position-relative carousel-slide" style={{ width: '100%', height: '420px', maxHeight: '50vw', minHeight: '220px' }}>
                 <Image
                   src={slide.src}
                   alt={slide.title}
                   fill
-                  className="object-cover"
+                  className="object-cover rounded-4"
                   priority={index === 0}
+                  style={{ objectFit: 'cover', borderRadius: '1.5rem' }}
                 />
                 <div className="carousel-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
                   <div className="text-center text-white">

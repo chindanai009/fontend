@@ -3,25 +3,36 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [tokenState, setToken] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
       setScrolled(offset > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
+    // token check
+    const token = localStorage.getItem("token");
+    setToken(token);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleSignOut = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+    router.push("/signin");
+  };
+
   return (
-    <nav className={`navbar navbar-expand-lg fixed-top nav-glass ${scrolled ? 'navbar-scrolled' : 'navbar-transparent'}`}>
+    <nav className={`navbar navbar-expand-lg fixed-top nav-glass ${scrolled ? 'navbar-scrolled' : 'navbar-transparent'} font-modern`} style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}>
       <div className="container">
-        <Link href="/" className="navbar-brand d-flex align-items-center gap-2">
+        <Link href="/" className="navbar-brand d-flex align-items-center gap-2 font-modern" style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}>
           <span className="logo-icon d-flex align-items-center justify-content-center">
             <Image
               src="/images/sliders/โลโก้.png"
@@ -31,7 +42,7 @@ export default function Navbar() {
               className="me-1"
             />
           </span>
-          <span className="fw-bold fs-4 brand-text d-flex align-items-center gap-1">
+          <span className="fw-bold fs-4 brand-text d-flex align-items-center gap-1 font-modern" style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}>
             MyWebsite
             <i className="bi bi-stars brand-star ms-1"></i>
           </span>
@@ -49,28 +60,41 @@ export default function Navbar() {
         </button>
 
         <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
-          <ul className="navbar-nav ms-auto align-items-lg-center">
-            {[
+          <ul className="navbar-nav ms-auto align-items-lg-center font-modern" style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}>
+            { [
               { href: "/", label: "หน้าหลัก", icon: "bi-house", color: "text-success" },
               { href: "/about", label: "เกี่ยวกับเรา", icon: "bi-info-circle", color: "text-primary" },
               { href: "/service", label: "บริการ", icon: "bi-gear", color: "text-warning" },
               { href: "/contact", label: "ติดต่อ", icon: "bi-envelope", color: "text-danger" }
             ].map((item, index) => (
               <li className="nav-item" key={index}>
-                <Link href={item.href} className="nav-link px-3 py-2 rounded-pill mx-1 nav-link-custom">
+                <Link href={item.href} className="nav-link px-3 py-2 rounded-pill mx-1 nav-link-custom font-modern" style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}>
                   <i className={`bi ${item.icon} me-2 ${item.color}`}></i>
                   {item.label}
                 </Link>
               </li>
-            ))}
-            {/* Login/Signup Buttons */}
+            )) }
+            {/* Login/Signup or Logout Button */}
             <li className="nav-item ms-lg-3 mt-2 mt-lg-0">
-              <Link href="/login" className="btn btn-outline-light px-4 py-2 rounded-pill me-2">
-                <i className="bi bi-box-arrow-in-right me-2"></i>เข้าสู่ระบบ
-              </Link>
-              <Link href="/register" className="btn btn-primary px-4 py-2 rounded-pill">
-                <i className="bi bi-person-plus me-2"></i>สมัครสมาชิก
-              </Link>
+              {tokenState ? (
+                <button
+                  type="button"
+                  onClick={handleSignOut}
+                  className="btn btn-outline-danger px-4 py-2 rounded-pill font-modern"
+                  style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}
+                >
+                  <i className="bi bi-box-arrow-right me-2"></i>SignOut
+                </button>
+              ) : (
+                <>
+                  <Link href="/login" className="btn btn-outline-light px-4 py-2 rounded-pill me-2 font-modern" style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}>
+                    <i className="bi bi-box-arrow-in-right me-2"></i>Login
+                  </Link>
+                  <Link href="/register" className="btn btn-primary px-4 py-2 rounded-pill font-modern" style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}>
+                    <i className="bi bi-person-plus me-2"></i>Register
+                  </Link>
+                </>
+              )}
             </li>
           </ul>
         </div>

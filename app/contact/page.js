@@ -2,11 +2,11 @@
 
 export default function Contact() {
   return (
-    <section className="min-vh-100 d-flex align-items-center justify-content-center" style={{ background: 'linear-gradient(135deg, #212529 0%, #14532d 100%)' }}>
-      <div className="container py-5">
+    <section className="min-vh-100 d-flex align-items-center justify-content-center" style={{ background: 'linear-gradient(135deg, #212529 0%, #14532d 100%)', fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'" }}>
+      <div className="container py-5" style={{ fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'" }}>
         <div className="row justify-content-center">
           <div className="col-12 col-md-8 col-lg-6">
-            <div className="card shadow-lg border-0 rounded-4 p-4 animate-fadeInUp bg-white bg-opacity-90">
+            <div className="card shadow-lg border-0 rounded-4 p-4 animate-fadeInUp bg-white bg-opacity-90" style={{ fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'" }}>
               <div className="text-center mb-4">
                 <h1 className="fw-bold display-4 text-success mb-2">Contact</h1>
                 <p className="text-secondary mb-0 fs-5">ติดต่อเจ้าของเว็บไซต์หรือสอบถามข้อมูลเพิ่มเติมได้ที่ช่องทางด้านล่าง</p>

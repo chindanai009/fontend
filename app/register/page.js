@@ -41,8 +41,8 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="register-bg min-vh-100 d-flex align-items-center justify-content-center">
-      <div className="card shadow-lg border-0 p-4 animate-fadeInUp" style={{ maxWidth: 480, width: "100%", borderRadius: 24 }}>
+    <div className="register-bg min-vh-100 d-flex align-items-center justify-content-center" style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}>
+      <div className="card shadow-lg border-0 p-4 animate-fadeInUp" style={{ maxWidth: 480, width: "100%", borderRadius: 24, fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'" }}>
         <div className="text-center mb-4">
           <div className="register-icon mb-2 mx-auto d-flex align-items-center justify-content-center">
             <i className="bi bi-person-plus fs-1 text-primary"></i>
@@ -50,7 +50,7 @@ export default function RegisterPage() {
           <h2 className="fw-bold mb-1">สมัครสมาชิก</h2>
           <p className="text-muted mb-0">สร้างบัญชีใหม่เพื่อใช้งานเว็บไซต์</p>
         </div>
-        <form onSubmit={handleSubmit} autoComplete="off">
+        <form onSubmit={handleSubmit} autoComplete="off" style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}>
           <div className="row g-2">
             <div className="col-md-4 mb-3">
               <label className="form-label">คำนำหน้า</label>

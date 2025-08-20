@@ -22,16 +22,13 @@ export default function Login() {
   };
 
   return (
-    <div className="register-bg min-vh-100 d-flex align-items-center justify-content-center">
-      <div className="card shadow-lg border-0 p-4 animate-fadeInUp" style={{ maxWidth: 400, width: '100%', borderRadius: 24 }}>
+    <div className="register-bg min-vh-100 d-flex align-items-center justify-content-center" style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}>
+      <div className="card shadow-lg border-0 p-4 animate-fadeInUp" style={{ maxWidth: 400, width: '100%', borderRadius: 24, fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'" }}>
         <div className="text-center mb-4">
-          <div className="register-icon mb-2 mx-auto d-flex align-items-center justify-content-center">
-            <i className="bi bi-box-arrow-in-right fs-1 text-danger"></i>
-          </div>
-          <h2 className="fw-bold mb-1">เข้าสู่ระบบ</h2>
-          <p className="text-muted mb-0">สำหรับสมาชิกที่มีบัญชีแล้ว</p>
+          <i className="bi bi-person-circle" style={{ fontSize: 48, color: '#ff7e5f', filter: 'drop-shadow(0 2px 8px #ff7e5f33)' }}></i>
+          <h2 className="fw-bold mt-2" style={{ letterSpacing: 1 }}>เข้าสู่ระบบ</h2>
         </div>
-        <form onSubmit={handleSubmit} autoComplete="off">
+        <form onSubmit={handleSubmit} autoComplete="off" style={{fontFamily: "'Prompt', 'Kanit', 'Inter', 'Roboto', 'sans-serif'"}}>
           <div className="mb-3">
             <label htmlFor="userOrEmail" className="form-label">อีเมลหรือชื่อผู้ใช้</label>
             <div className="input-group">

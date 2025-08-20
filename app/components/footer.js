@@ -6,7 +6,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-dark text-light">
+  <footer className="footer-bg-img text-light">
       {/* Main Footer */}
       <div className="py-5">
         <div className="container">
@@ -167,29 +167,30 @@ export default function Footer() {
       </div>
 
       <style jsx>{`
+        .footer-bg-img {
+          background: linear-gradient(rgba(20, 30, 48, 0.85), rgba(36, 59, 85, 0.85)), url('/images/sliders/9.jpg') center/cover no-repeat;
+          /* fallback color if image fails */
+          background-color: #232946;
+          position: relative;
+        }
         .footer-brand {
           border-left: 4px solid #0d6efd;
           padding-left: 1rem;
         }
-        
         .footer-links a {
           transition: all 0.3s ease;
           padding: 0.25rem 0;
         }
-        
         .footer-links a:hover {
           color: #0d6efd !important;
           transform: translateX(5px);
         }
-        
         .newsletter-form .form-control {
           border-radius: 50px 0 0 50px;
         }
-        
         .newsletter-form .btn {
           border-radius: 0 50px 50px 0;
         }
-        
         .social-icon {
           width: 40px;
           height: 40px;
@@ -200,16 +201,20 @@ export default function Footer() {
           transition: all 0.3s ease;
           font-size: 1.1rem;
         }
-        
         .social-icon:hover {
           background: var(--social-color);
           color: white;
           transform: translateY(-3px);
         }
-        
         .contact-info i {
           width: 20px;
           text-align: center;
+        }
+        @media (max-width: 768px) {
+          .footer-bg-img {
+            background-position: center top;
+            background-size: cover;
+          }
         }
       `}</style>
     </footer>
