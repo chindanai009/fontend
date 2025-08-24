@@ -2,11 +2,11 @@
 
 export default function About() {
   return (
-    <section className="min-vh-100 d-flex align-items-center justify-content-center" style={{ background: 'linear-gradient(135deg, #212529 0%, #14532d 100%)' }}>
-      <div className="container py-5">
+  <section className="min-vh-100 d-flex align-items-center justify-content-center font-modern" style={{ background: 'linear-gradient(135deg, #212529 0%, #14532d 100%)' }}>
+  <div className="container py-5 font-modern">
         <div className="row justify-content-center">
           <div className="col-12 col-md-8 col-lg-7">
-            <div className="card shadow-lg border-0 rounded-4 p-4 animate-fadeInUp bg-white bg-opacity-90">
+            <div className="card shadow-lg border-0 rounded-4 p-4 animate-fadeInUp bg-white bg-opacity-90 font-modern">
               <div className="text-center mb-4">
                 <img src="/images/sliders/4.jpg" alt="Profile" className="rounded-circle shadow mb-3" style={{ width: 100, height: 100, objectFit: 'cover', border: '4px solid #3bb78f' }} />
                 <h1 className="fw-bold display-5 text-success mb-1">Chindanai Promdang</h1>
