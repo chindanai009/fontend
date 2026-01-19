@@ -3,22 +3,59 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { loginUser } from "@/lib/api";
+import Swal from "sweetalert2";
 
 export default function Login() {
   const [userOrEmail, setUserOrEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Demo: simple validation
+    // Validation
     if (!userOrEmail || !password) {
       setError("กรุณากรอกอีเมล/ชื่อผู้ใช้ และรหัสผ่าน");
       return;
     }
     setError("");
-    // TODO: Add real authentication logic here
-    alert("เข้าสู่ระบบสำเร็จ (Demo)");
+    setLoading(true);
+
+    try {
+      // Call API to login
+      const response = await loginUser(userOrEmail, password);
+      
+      if (response.status === "ok" && response.token) {
+        // Save token to localStorage
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("user", JSON.stringify(response.user));
+        
+        Swal.fire({
+          icon: "success",
+          title: "เข้าสู่ระบบสำเร็จ",
+          text: `ยินดีต้อนรับ ${response.user.firstname} ${response.user.lastname}`,
+          timer: 1500,
+          showConfirmButton: false,
+        });
+
+        // Redirect to admin users page
+        setTimeout(() => {
+          router.push("/admin/users");
+        }, 1500);
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      setError(err.message || "ไม่สามารถเข้าสู่ระบบได้");
+      Swal.fire({
+        icon: "error",
+        title: "เข้าสู่ระบบล้มเหลว",
+        text: err.message || "ชื่อผู้ใช้ หรือ รหัสผ่าน ไม่ถูกต้อง",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -61,8 +98,12 @@ export default function Login() {
             </div>
           </div>
           {error && <div className="alert alert-danger py-2">{error}</div>}
-          <button type="submit" className="btn btn-danger w-100 py-2 mt-2 rounded-pill fw-bold shadow-sm animate-bounceIn">
-            <i className="bi bi-box-arrow-in-right me-2"></i> เข้าสู่ระบบ
+          <button 
+            type="submit" 
+            className="btn btn-danger w-100 py-2 mt-2 rounded-pill fw-bold shadow-sm animate-bounceIn"
+            disabled={loading}
+          >
+            <i className="bi bi-box-arrow-in-right me-2"></i> {loading ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ"}
           </button>
         </form>
         <div className="text-center mt-3">

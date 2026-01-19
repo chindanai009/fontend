@@ -2,6 +2,8 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { getUsers, deleteUser, logoutUser } from '@/lib/api';
+import Swal from 'sweetalert2';
 
 export default function User() {
   const [items, setItems] = useState([]);
@@ -13,47 +15,65 @@ export default function User() {
     const token = localStorage.getItem('token');
     setToken(token);
     if (!token) {
-      router.push('/signin');
+      router.push('/login');
       return;
     }
-    async function getUsers() {
+
+    async function fetchUsers() {
       try {
-        const res = await fetch('http://itdev.cmtc.ac.th:3000/api/users');
-        if (!res.ok) {
-          console.error('Failed to fetch data');
-          return;
-        }
-        const data = await res.json();
-        setItems(data);
+        const data = await getUsers({ limit: 100, page: 1 });
+        setItems(data.data || []);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching users:', error);
+        if (error.message.includes('401') || error.message.includes('Unauthorized')) {
+          localStorage.removeItem('token');
+          router.push('/login');
+        }
         setLoading(false);
       }
     }
-    getUsers();
-    const interval = setInterval(getUsers, 1000);
+
+    fetchUsers();
+    // Fetch every 5 seconds instead of 1 second
+    const interval = setInterval(fetchUsers, 5000);
     return () => clearInterval(interval);
   }, [router]);
 
-  const handleSignOut = () => {
-    localStorage.removeItem('token');
-    setToken(null);
-    router.push('/signin');
+  const handleSignOut = async () => {
+    try {
+      await logoutUser();
+      setToken(null);
+      router.push('/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Still redirect even if API call fails
+      localStorage.removeItem('token');
+      router.push('/login');
+    }
   };
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://itdev.cmtc.ac.th:3000/api/users/${id}`, {
-        method: 'DELETE',
-        headers: {
-          Accept: 'application/json',
-        },
+      const result = await Swal.fire({
+        title: 'ยืนยันการลบ',
+        text: 'คุณแน่ใจว่าต้องการลบผู้ใช้นี้?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'ลบ',
+        cancelButtonText: 'ยกเลิก',
       });
-      const result = await res.json();
-      console.log(result);
+
+      if (result.isConfirmed) {
+        await deleteUser(id);
+        setItems(items.filter(item => item.id !== id));
+        Swal.fire('สำเร็จ', 'ลบผู้ใช้เรียบร้อยแล้ว', 'success');
+      }
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Delete error:', error);
+      Swal.fire('เกิดข้อผิดพลาด', error.message || 'ไม่สามารถลบผู้ใช้ได้', 'error');
     }
   };
 

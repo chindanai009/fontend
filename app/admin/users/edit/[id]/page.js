@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-
+import { use } from 'react';
 import Link from 'next/link';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
+import { getUserById, updateUser } from '@/lib/api';
 
 export default function Page({params}) {
   const router = useRouter();
-  const { id } = params;
+  const { id } = use(params); // ✅ Unwrap params with React.use()
   const [firstname, setFirstname] = useState('');
   const [fullname, setFullname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -22,23 +23,20 @@ export default function Page({params}) {
   useEffect(() => {
     async function getUser() {
       try {
-        const res = await fetch(`http://itdev.cmtc.ac.th:3000/api/users/${id}`);
-        if (!res.ok) {
-          console.error('Failed to fetch data');
-          return;
+        const data = await getUserById(id);
+        if (data.data) {
+          setFirstname(data.data.firstname || '');
+          setFullname(data.data.fullname || '');
+          setLastname(data.data.lastname || '');
+          setUsername(data.data.username || '');
+          setPassword(data.data.password || '');
+          setAddress(data.data.address || '');
+          setSex(data.data.sex || '');
+          setBirthday(data.data.birthday || '');
         }
-        const data = await res.json();
-        // Set all fields from fetched user
-        setFirstname(data.firstname || '');
-        setFullname(data.fullname || '');
-        setLastname(data.lastname || '');
-        setUsername(data.username || '');
-        setPassword(data.password || '');
-        setAddress(data.address || '');
-        setSex(data.sex || '');
-        setBirthday(data.birthday || '');
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching user:', error);
+        Swal.fire({ icon: 'error', title: 'เกิดข้อผิดพลาด', text: 'ไม่สามารถโหลดข้อมูลผู้ใช้' });
       }
     }
     getUser();
@@ -48,16 +46,8 @@ export default function Page({params}) {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch('http://itdev.cmtc.ac.th:3000/api/users', {
-        method: 'PUT',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id, firstname, fullname, lastname, username, password, address, sex, birthday }),
-      });
-      const result = await res.json();
-      if (res.ok) {
+      const result = await updateUser(id, { firstname, fullname, lastname, username, password, address, sex, birthday });
+      if (result.status === 'ok') {
         Swal.fire({ icon: 'success', title: 'อัปเดตข้อมูลสำเร็จ!', timer: 1500, showConfirmButton: false });
         setTimeout(() => {
           router.push('/admin/users');
@@ -66,7 +56,7 @@ export default function Page({params}) {
         Swal.fire({ icon: 'error', title: 'เกิดข้อผิดพลาด', text: result.message || 'เกิดข้อผิดพลาดในการอัปเดต' });
       }
     } catch (err) {
-      Swal.fire({ icon: 'error', title: 'เกิดข้อผิดพลาด', text: 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์' });
+      Swal.fire({ icon: 'error', title: 'เกิดข้อผิดพลาด', text: err.message || 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์' });
     }
     setLoading(false);
   };

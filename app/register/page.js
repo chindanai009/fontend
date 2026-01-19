@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
+import { registerUser } from '@/lib/api';
 
 export default function RegisterPage() {
   const [firstname, setFirstname] = useState('');
@@ -14,30 +16,73 @@ export default function RegisterPage() {
   const [sex, setSex] = useState('');
   const [birthday, setBirthday] = useState('');
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validation
+    if (!firstname || !fullname || !lastname || !username || !password) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'กรุณากรอกข้อมูล',
+        text: 'กรุณากรอกข้อมูลทั้งหมด',
+      });
+      return;
+    }
+
     setLoading(true);
     try {
-      const res = await fetch('http://itdev.cmtc.ac.th:3000/api/users', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ firstname, fullname, lastname, username, password, address, sex, birthday }),
-      });
-      const result = await res.json();
-      if (res.ok) {
-        Swal.fire({ icon: 'success', title: 'สมัครสมาชิกสำเร็จ!', text: 'คุณสามารถเข้าสู่ระบบได้แล้ว', timer: 2000, showConfirmButton: false });
-        setFirstname(''); setFullname(''); setLastname(''); setUsername(''); setPassword(''); setAddress(''); setSex(''); setBirthday('');
-      } else {
-        Swal.fire({ icon: 'error', title: 'เกิดข้อผิดพลาด', text: result.message || 'ไม่สามารถสมัครสมาชิกได้' });
+      const userData = {
+        firstname,
+        fullname,
+        lastname,
+        username,
+        password,
+        status: 'active',
+        // Optional fields (backend may not need these)
+        ...(address && { address }),
+        ...(sex && { sex }),
+        ...(birthday && { birthday }),
+      };
+
+      const result = await registerUser(userData);
+
+      // Backend ส่ง status "active" แทน "ok"
+      if (result.id || result.status === 'ok' || result.status === 'active') {
+        Swal.fire({
+          icon: 'success',
+          title: 'สมัครสมาชิกสำเร็จ!',
+          text: 'คุณสามารถเข้าสู่ระบบได้แล้ว',
+          timer: 2000,
+          showConfirmButton: false,
+        });
+        
+        // Clear form
+        setFirstname('');
+        setFullname('');
+        setLastname('');
+        setUsername('');
+        setPassword('');
+        setAddress('');
+        setSex('');
+        setBirthday('');
+
+        // Redirect to login
+        setTimeout(() => {
+          router.push('/login');
+        }, 2000);
       }
     } catch (err) {
-      Swal.fire({ icon: 'error', title: 'เกิดข้อผิดพลาด', text: 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์' });
+      console.error('Register error:', err);
+      Swal.fire({
+        icon: 'error',
+        title: 'เกิดข้อผิดพลาด',
+        text: err.message || 'ไม่สามารถสมัครสมาชิกได้',
+      });
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
