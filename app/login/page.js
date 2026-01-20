@@ -110,9 +110,9 @@ export default function Login() {
           <span className="text-muted">ยังไม่มีบัญชี? </span>
           <Link href="/register" className="text-primary fw-bold"><i className="bi bi-person-plus"></i> สมัครสมาชิก</Link>
         </div>
-        <div className="text-center mt-4">
+        {/* <div className="text-center mt-4">
           <AdminSignInButton />
-        </div>
+        </div> */}
       </div>
       <style jsx>{`
         .register-bg {
